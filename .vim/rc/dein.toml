@@ -34,3 +34,69 @@ imap <silent> <C-e> <Esc> :NERDTreeToggle<CR>
 
 [[plugins]]
 repo = 'Xuyuanp/nerdtree-git-plugin'
+
+[[plugins]]
+repo = 'kana/vim-submode'
+hook_add = '''
+call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+'''
+# git管理(編集系、コマンド直接実行)
+[[plugins]]
+repo = 'idanarye/vim-merginal' 
+
+# git管理(コミット画面を編集しやすくする)
+[[plugins]]
+repo = 'rhysd/committia.vim' 
+
+# git管理（gitのlogをグラフィカル表示）
+[[plugins]]
+repo = 'gregsexton/gitv' 
+
+# emmetをvimで
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'h1mesuke/unite-outline'
+
+[[plugins]]
+repo = 'Align'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+
+# Rails向けのコマンドを提供する
+[[plugins]]
+repo = 'tpope/vim-rails'
+
+[[plugins]]
+repo = 'Shougo/neocomplete'
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+# コメントON/OFFを手軽に実行する
+[[plugins]]
+repo = 'tomtom/tcomment_vim'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'tpope/vim-pathogen'
+hook_add = '''
+call pathogen#infect()
+'''
