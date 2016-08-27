@@ -67,7 +67,7 @@ set ttymouse=xterm2
 
 "------------------------------------
 " ウィンドウ幅やタブ関連の設定
-"-----------------------------------
+"------------------------------------
 nnoremap s <Nop>
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
@@ -98,3 +98,22 @@ nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 " tagsジャンプの時に複数ある時は一覧表示
 nnoremap <C-]> g<C-]>
 
+"------------------------------------
+" クリップボードの中身を貼り付ける時に自動でペーストモードになる設定
+" http://qiita.com/ringo/items/bb9cf61a3ccfe6183c7b
+"------------------------------------
+if &term =~ "xterm"
+    let &t_ti .= "\e[?2004h"
+    let &t_te .= "\e[?2004l"
+    let &pastetoggle = "\e[201~"
+
+    function XTermPasteBegin(ret)
+        set paste
+        return a:ret
+    endfunction
+
+    noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
+    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+    cnoremap <special> <Esc>[200~ <nop>
+    cnoremap <special> <Esc>[201~ <nop>
+endif

@@ -47,17 +47,18 @@ call submode#map('bufmove', 'n', '', '<', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 '''
+
 # git管理(編集系、コマンド直接実行)
 [[plugins]]
-repo = 'idanarye/vim-merginal' 
+repo = 'idanarye/vim-merginal'
 
 # git管理(コミット画面を編集しやすくする)
 [[plugins]]
-repo = 'rhysd/committia.vim' 
+repo = 'rhysd/committia.vim'
 
 # git管理（gitのlogをグラフィカル表示）
 [[plugins]]
-repo = 'gregsexton/gitv' 
+repo = 'gregsexton/gitv'
 
 # emmetをvimで
 [[plugins]]
@@ -92,6 +93,9 @@ repo = 'tpope/vim-rails'
 
 [[plugins]]
 repo = 'Shougo/neocomplete'
+hook_add = '''
+let g:neocomplete#enable_at_startup = 1
+'''
 
 [[plugins]]
 repo = 'Shougo/neosnippet'
@@ -110,4 +114,20 @@ repo = 'tpope/vim-fugitive'
 repo = 'tpope/vim-pathogen'
 hook_add = '''
 call pathogen#infect()
+'''
+
+[[plugins]] #行末の半角スペースを可視化
+repo = 'bronson/vim-trailing-whitespace'
+
+[[plugins]] #シンタックスチェック
+repo = 'scrooloose/syntastic'
+hook_add = '''
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2
+'''
+
+[[plugins]] #インデントを見やすくする
+repo = 'nathanaelkane/vim-indent-guides'
+hook_add = '''
+let g:indent_guides_enable_on_vim_startup = 1
 '''
