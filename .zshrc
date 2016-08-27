@@ -14,7 +14,7 @@ zplug "b4b4r07/http_code", as:command, use:bin
 zplug "plugins/git",   from:oh-my-zsh, if:"(( $+commands[git] ))"
 zplug "lib/clipboard", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
 zplug "mollifier/anyframe"
-zplug "b4b4r07/enhancd", use: enhancd.sh
+zplug "b4b4r07/enhancd", use:init.sh
 # 必要ならばアーキテクチャ指定
 zplug "peco/peco", as:command, from:gh-r, use:"*amd64*"
 
@@ -114,15 +114,11 @@ HISTFILE=~/.zsh_history
 
 # メモリ上に保存される件数（検索できる件数）
 HISTSIZE=100000
-
 # ファイルに保存される件数
 SAVEHIST=100000
-
 # 履歴を複数の端末で共有する
 setopt share_history
-
 # 直前と同じコマンドの場合は履歴に追加しない
 setopt hist_ignore_dups
-
 # 重複するコマンドは古い法を削除する
 setopt hist_ignore_all_dups
