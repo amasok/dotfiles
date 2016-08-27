@@ -59,6 +59,7 @@ set modifiable
 set expandtab "タブ入力を複数の空白入力に置き換える
 set tabstop=2 "画面上でタブ文字が占める幅
 set shiftwidth=2 "画面上でタブ文字が占める幅
+set backspace=indent,eol,start "バックスペース押せない問題を解決する
 syntax enable
 
 " マウス操作ができるようにする
