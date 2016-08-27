@@ -65,6 +65,8 @@ syntax enable
 " マウス操作ができるようにする
 set mouse=a
 set ttymouse=xterm2
+" yankをクリップボードにコピー
+set clipboard=unnamed,autoselect
 
 "------------------------------------
 " ウィンドウ幅やタブ関連の設定
