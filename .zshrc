@@ -89,6 +89,8 @@ bindkey '^x^i' anyframe-widget-insert-git-branch
 bindkey '^xf' anyframe-widget-insert-filename
 bindkey '^x^f' anyframe-widget-insert-filename
 
+bindkey '^x^x' anyframe-widget-select-widget
+
 # ------------------------------------
 # cdr, add-zsh-hook を有効にする
 # ------------------------------------
