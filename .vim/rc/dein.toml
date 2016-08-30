@@ -152,6 +152,44 @@ hook_add = '''
                          \ 'bundle': '--languages=+Ruby',
                          \ }
   let g:alpaca_tags#timeout_period = 0
-  autocmd vimrc BufEnter * AlpacaTagsSet
-  autocmd vimrc BufWritePost * AlpacaTagsUpdate
+'''
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline = {
+        \ 'colorscheme': 'seoul256',
+        \ 'mode_map': {'c': 'NORMAL'},
+        \ 'active': {
+        \   'right': [ [ 'syntastic', 'lineinfo' ],
+        \              [ 'percent' ], [ 'winform' ],
+        \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'branch', 'filename' ] ]
+        \ },
+        \ 'component_function': {
+        \   'linetotal': 'LightLineTotal',
+        \   'modified': 'LightLineModified',
+        \   'readonly': 'LightLineReadonly',
+        \   'fugitive': 'LightLineFugitive',
+        \   'filename': 'LightLineFilename',
+        \   'filepath': 'LightLineFilepath',
+        \   'fileformat': 'LightLineFileformat',
+        \   'filetype': 'LightLineFiletype',
+        \   'fileencoding': 'LightLineFileencoding',
+        \   'mode': 'LightLineMode',
+        \   'winform': 'LightLineWinform'
+        \ },
+        \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
+        \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
+        \ 'component_expand': {
+        \   'syntastic': 'SyntasticStatuslineFlag',
+        \ },
+        \ 'component_type': {
+        \   'syntastic': 'error',
+        \ }
+        \ }
+
+let g:lightline.component = {
+    \ 'lineinfo': '%3l[%L]:%-2v'}
+
 '''
