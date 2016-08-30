@@ -193,3 +193,7 @@ let g:lightline.component = {
     \ 'lineinfo': '%3l[%L]:%-2v'}
 
 '''
+
+[[plugins]] #
+repo = 'kmnk/vim-unite-giti'
+depends = ['unite.vim']
