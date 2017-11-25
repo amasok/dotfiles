@@ -60,6 +60,9 @@ repo = 'rhysd/committia.vim'
 [[plugins]]
 repo = 'gregsexton/gitv'
 
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
 # emmetをvimで
 [[plugins]]
 repo = 'mattn/emmet-vim'
