@@ -55,3 +55,4 @@ brew 'homebrew/dupes/screen'
 brew 'rcmdnk/file/brew-file'
 brew 'sanemat/font/ricty', args: ['vim-powerline']
 brew 'icdiff'
+brew 'ansible'
