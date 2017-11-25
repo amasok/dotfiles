@@ -53,7 +53,8 @@ fi
 # ------------------------------------
 # tmuxの時だけpbcopyでtmuxでコピーした内容をクリップボードに保存する
 # ------------------------------------
-if [ $SHLVL > 1 ]; then
+# if [ $SHLVL > 1 ]; then
+if [ ! -z $TMUX ]; then
   alias tmux-copy='tmux save-buffer - | reattach-to-user-namespace pbcopy'
 fi
 
