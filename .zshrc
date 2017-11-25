@@ -70,27 +70,37 @@ fpath=($HOME/.zsh/anyframe(N-/) $fpath)
 autoload -Uz anyframe-init
 anyframe-init
 bindkey '^xb' anyframe-widget-cdr
+
+# ブランチ一覧 ⇒ 選択 ⇒ checkout
 bindkey '^x^b' anyframe-widget-checkout-git-branch
 
+# history ⇒ 選択 ⇒ 実行
 bindkey '^xr' anyframe-widget-execute-history
 bindkey '^x^r' anyframe-widget-execute-history
 
+# history ⇒ 選択 ⇒ コマンドラインに挿入
 bindkey '^xp' anyframe-widget-put-history
 bindkey '^x^p' anyframe-widget-put-history
 
+# ghq で管理してるリポジトリ一覧 ⇒ 選択 ⇒ 移動
 bindkey '^xg' anyframe-widget-cd-ghq-repository
 bindkey '^x^g' anyframe-widget-cd-ghq-repository
 
+# プロセス一覧 ⇒ 選択 ⇒ kill
 bindkey '^xk' anyframe-widget-kill
 bindkey '^x^k' anyframe-widget-kill
 
+# ブランチ一覧 ⇒ 選択 ⇒ コマンドラインに挿入
 bindkey '^xi' anyframe-widget-insert-git-branch
 bindkey '^x^i' anyframe-widget-insert-git-branch
 
+# ファイル名 ⇒ 選択 ⇒ コマンドラインに挿入
 bindkey '^xf' anyframe-widget-insert-filename
 bindkey '^x^f' anyframe-widget-insert-filename
 
 bindkey '^x^x' anyframe-widget-select-widget
+
+
 
 # ------------------------------------
 # cdr, add-zsh-hook を有効にする
@@ -121,5 +131,7 @@ SAVEHIST=100000
 setopt share_history
 # 直前と同じコマンドの場合は履歴に追加しない
 setopt hist_ignore_dups
-# 重複するコマンドは古い法を削除する
+# 重複するコマンドは古い方を削除する
 setopt hist_ignore_all_dups
+#メタ文字(*,[],?…)が含まれているとファイル名だと勘違いする問題を解決
+setopt nonomatch

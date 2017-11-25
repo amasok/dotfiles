@@ -84,6 +84,10 @@ repo = 'Shougo/context_filetype.vim'
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
+[[plugins]] # riot syntax
+repo = 'ryym/vim-riot'
+on_ft = 'tag'
+
 [[plugins]]
 repo = 'Align'
 
