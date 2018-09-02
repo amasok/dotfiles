@@ -4,9 +4,19 @@ http://qiita.com/osakanafish/items/731dc31168e3330dbcd0
 
 
 brew update
-
 brew install argon/mas/mas
 brew install rcmdnk/file/brew-file
+mkdir -p ~/.config/brewfile/
+mkdir -p ~/.cache/shell/
+ln ~/dotfiles/Brewfile ~/.config/brewfile/Brewfile
+brew file install
+
+# zsh変更
+
+```
+sudo echo /usr/local/bin/zsh >> /etc/shells
+chsh -s /usr/local/bin/zsh
+```
 
 # シンボリックリンクを貼る
 
