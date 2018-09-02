@@ -32,12 +32,17 @@ ln -s ~/dotfiles/.vimrc ~/.vimrc
 brew uninstall ricty
 
 # Rictyがインストールされていない場合tapでリポジトリを追加する
-brew tap sanemat/font
 
+'''
+brew tap sanemat/font
 brew install --vim-powerline ricty
+'''
 
 # 展開ディレクトリは環境に合わせる
-cp -f /usr/local/Cellar/ricty/4.0.1/share/fonts/Ricty*.ttf ~/Library/Fonts/
+
+```
+cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
+```
 
 # フォントのキャッシュ削除
 fc-cache -vf
