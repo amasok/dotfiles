@@ -10,6 +10,8 @@ mkdir -p ~/.config/brewfile/
 mkdir -p ~/.cache/shell/
 ln ~/dotfiles/Brewfile ~/.config/brewfile/Brewfile
 brew file install
+# vagrant を使う
+vagrant plugin install vagrant-vbguest
 
 # tpm (tmux plugin manager)のインストール
 
