@@ -4,8 +4,8 @@ source ~/.zplug/init.zsh
 # zplugの定義
 # ------------------------------------
 # ここにプラグインを定義する
-zplug "themes/robbyrussell", from:oh-my-zsh, nice:19
-zplug 'zsh-users/zsh-autosuggestions' # 入力中のコマンドをコマンド履歴から推測し、候補として表示する
+zplug "themes/robbyrussell", from:oh-my-zsh, defer:2
+zplug 'zsh-users/zsh-autosuggestions', at: v0.4.0 # 入力中のコマンドをコマンド履歴から推測し、候補として表示する
 zplug 'zsh-users/zsh-completions' # 候補選択拡張
 zplug 'zsh-users/zsh-syntax-highlighting' #シンタックスエラーを色で表示
 zplug "b4b4r07/http_code", as:command, use:bin
@@ -135,3 +135,5 @@ setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 #メタ文字(*,[],?…)が含まれているとファイル名だと勘違いする問題を解決
 setopt nonomatch
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

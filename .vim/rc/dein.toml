@@ -89,7 +89,7 @@ repo = 'ryym/vim-riot'
 on_ft = 'tag'
 
 [[plugins]]
-repo = 'Align'
+repo = 'vim-scripts/Align'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
