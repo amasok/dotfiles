@@ -11,6 +11,16 @@ mkdir -p ~/.cache/shell/
 ln ~/dotfiles/Brewfile ~/.config/brewfile/Brewfile
 brew file install
 
+# tpm (tmux plugin manager)のインストール
+
+```
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+tmux source ~/.tmux.conf
+```
+インストール開始
+ctrl + s I
+
+
 # zsh変更
 
 ```
