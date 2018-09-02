@@ -9,6 +9,7 @@ brew cairo
 brew clipper
 brew composer
 brew ctags
+brew zplug
 brew czmq
 brew eigen
 brew ffmpeg
