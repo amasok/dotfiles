@@ -26,6 +26,7 @@ brew icdiff
 brew icu4c
 brew ilmbase
 brew imagemagick
+brew iterm2
 brew jpeg
 brew lame
 brew leptonica
@@ -81,13 +82,10 @@ brew zsh
 
 tap homebrew/brewdler
 
-tap homebrew/dupes
-
-tap homebrew/php
-
 tap homebrew/services
 
 tap homebrew/cask
+cask xquartz
 cask docker
 cask inkscape
 cask vagrant
@@ -105,18 +103,14 @@ brew ricty
 cask gimp
 cask java
 cask vagrant-manager
-cask xquartz
 
 # App Store applications
 appstore 443987910 1Password (6.8.8)
 appstore 417375580 BetterSnapTool (1.8)
 appstore 404789253 Cornerstone (2.7.18)
 appstore 406056744 Evernote (7.2.3)
-appstore 1127487414 Install macOS Sierra (12.0.49)
 appstore 896624060 Kobito (2.3.8)
 appstore 539883307 LINE (5.9.3)
-appstore 768692687 LION FX (1.24.4)
-appstore 946680495 MARKETSPEED (2.7.1)
 appstore 992076693 MindNode (2.5.7)
 appstore 669475285 PG Commander (1.5.9)
 appstore 1007457278 Realm Browser (3.0.1)
