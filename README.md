@@ -2,7 +2,21 @@
 
 http://qiita.com/osakanafish/items/731dc31168e3330dbcd0
 
+
 brew update
+
+brew install argon/mas/mas
+brew install rcmdnk/file/brew-file
+
+# シンボリックリンクを貼る
+
+```
+ln -s ~/dotfiles/.zshrc ~/.zshrc
+ln -s ~/dotfiles/.zsenv ~/.zshenv
+ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/.vim ~/.vim
+ln -s ~/dotfiles/.vimrc ~/.vimrc
+```
 
 # すでにRictyがインストールされている場合
 brew uninstall ricty

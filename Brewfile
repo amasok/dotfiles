@@ -1,5 +1,6 @@
 
 # tap repositories and their packages
+#
 
 tap homebrew/core
 brew ansible
@@ -98,7 +99,7 @@ tap rcmdnk/file
 brew brew-file
 
 tap sanemat/font
-brew ricty
+brew ricty --vim-powerline
 
 # Other Cask applications
 cask gimp
