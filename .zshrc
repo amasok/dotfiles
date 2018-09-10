@@ -138,3 +138,4 @@ setopt hist_ignore_all_dups
 setopt nonomatch
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+export PATH=$PATH:/usr/local/share/git-core/contrib/diff-highlight
