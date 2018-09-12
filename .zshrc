@@ -17,7 +17,7 @@ zplug "lib/clipboard", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
 zplug "mollifier/anyframe"
 zplug "b4b4r07/enhancd", use:init.sh
 # 必要ならばアーキテクチャ指定
-zplug "peco/peco", as:command, from:gh-r, use:"*amd64*"
+zplug "peco/peco", as:command, from:gh-r #, use:"*amd64*"
 
 # fzf-tmux の peco バージョン
 zplug "b4b4r07/dotfiles", as:command, use:bin/peco-tmux
