@@ -25,10 +25,7 @@ zplug "b4b4r07/dotfiles", as:command, use:bin/peco-tmux
 
 
 if ! zplug check --verbose; then
-  printf 'Install? [y/N]: '
-  if read -q; then
-    echo; zplug install
-  fi
+  echo; zplug install
 fi
 zplug load --verbose
 # ------------------------------------
