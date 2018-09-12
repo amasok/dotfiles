@@ -134,4 +134,5 @@ setopt hist_ignore_all_dups
 #メタ文字(*,[],?…)が含まれているとファイル名だと勘違いする問題を解決
 setopt nonomatch
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+export PATH="$HOME/.phpenv/bin:$PATH"
+eval "$(phpenv init -)"
