@@ -3,4 +3,4 @@
 git clone https://github.com/zplug/zplug ~/.zplug
 export ZPLUG_HOME=~/.zplug
 source ~/.zplug/init.zsh
-zplug install
+source ~/.zshrc
