@@ -1,20 +1,6 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
-[[plugins]]
-repo = 'Shougo/vimproc'
-hook_post_update = '''
-  if dein#util#_is_windows()
-    let cmd = 'tools\\update-dll-mingw'
-  elseif dein#util#_is_cygwin()
-    let cmd = 'make -f make_cygwin.mak'
-  elseif executable('gmake')
-    let cmd = 'gmake'
-  else
-    let cmd = 'make'
-  endif
-  let g:dein#plugin.build = cmd
-'''
 
 [[plugins]] # TMUX
 repo = 'tmux-plugins/vim-tmux'
@@ -97,12 +83,6 @@ repo = 'junegunn/vim-easy-align'
 # Rails向けのコマンドを提供する
 [[plugins]]
 repo = 'tpope/vim-rails'
-
-[[plugins]]
-repo = 'Shougo/neocomplete'
-hook_add = '''
-let g:neocomplete#enable_at_startup = 1
-'''
 
 [[plugins]]
 repo = 'Shougo/neosnippet'

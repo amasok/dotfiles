@@ -15,6 +15,11 @@ endif
 " 設定開始
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
+  call dein#add('Shougo/dein.vim')
+  call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+  call dein#add('Shougo/neocomplete.vim')
+  call dein#add('Shougo/neomru.vim')
+  call dein#add('Shougo/neosnippet-snippets')
 
   " プラグインリストを収めた TOML ファイル
   " 予め TOML ファイル（後述）を用意しておく
@@ -41,6 +46,7 @@ if dein#check_install()
 endif
 
 " call map(dein#check_clean(), "delete(v:val, 'rf')")
+
 
 
 if has('vim_starting')
@@ -209,3 +215,6 @@ if executable('ag')
   let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
   let g:unite_source_grep_recursive_opt = ''
 endif
+
+" neocompleteの設定
+let g:neocomplete#enable_at_startup = 1
