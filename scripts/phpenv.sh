@@ -20,3 +20,10 @@ git clone https://github.com/CHH/php-build.git ~/.phpenv/plugins/php-build
 phpenv install $1
 phpenv global $1
 phpenv rehash
+
+cd ~/
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+sudo chmod +x /usr/local/bin/composer
+
+echo 'export PATH="$PATH:$HOME/.composer/vendor/bin"' >> ~/.zshrc
