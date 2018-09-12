@@ -139,3 +139,4 @@ setopt nonomatch
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PATH=$PATH:/usr/local/share/git-core/contrib/diff-highlight
+alias docker-login='(){tmux select-pane -P "fg=4,bg=colour236"; docker exec -it $1 bash -lc "su - $2";tmux select-pane -P "fg=default,bg=default" }'
