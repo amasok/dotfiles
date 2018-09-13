@@ -140,3 +140,13 @@ setopt nonomatch
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PATH=$PATH:/usr/local/share/git-core/contrib/diff-highlight
 alias docker-login='(){tmux select-pane -P "fg=4,bg=colour236"; docker exec -it $1 bash -lc "su - $2";tmux select-pane -P "fg=default,bg=default" }'
+
+# dockerコンテナIDをpecoで選択してプロンプトにinsertする
+function anyframe-widget-insert-docker-ps() {
+  docker ps | tail -n +2 \
+  | anyframe-selector-auto \
+  | cut -d" " -f1 \
+  | anyframe-action-insert
+}
+zle -N anyframe-widget-insert-docker-ps
+bindkey '^xd' anyframe-widget-insert-docker-ps
