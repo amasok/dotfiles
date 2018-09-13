@@ -36,6 +36,15 @@ imap <silent> <C-e> <Esc> :NERDTreeToggle<CR>
 repo = 'Xuyuanp/nerdtree-git-plugin'
 
 [[plugins]]
+repo = 'violetyk/neocomplete-php.vim'
+hook_add = '''
+let g:neocomplete_php_locale = 'ja'
+'''
+
+[[plugins]]
+repo = 'vim-scripts/PDV--phpDocumentor-for-Vim'
+
+[[plugins]]
 repo = 'kana/vim-submode'
 hook_add = '''
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
