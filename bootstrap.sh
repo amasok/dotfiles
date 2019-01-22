@@ -2,6 +2,8 @@
 
 DOT_FILES=( .zshrc .zshenv .gitconfig .vimrc .vim .tmux.conf)
 
+# brew系のインストール
+/bin/bash -c ./Brewfile
 
 # シンボリックリンクの作成
 for file in ${DOT_FILES[@]}
