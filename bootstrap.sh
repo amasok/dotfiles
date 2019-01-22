@@ -1,6 +1,6 @@
 #/bin/bash
 
-DOT_FILES=( .zshrc .zshrc.env .gitconfig .screenrc .vimrc .vim .tmux.conf .tmux-powerline .hgrc )
+DOT_FILES=( .zshrc .zshenv .gitconfig .vimrc .vim .tmux.conf)
 
 
 # シンボリックリンクの作成
