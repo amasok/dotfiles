@@ -2,7 +2,7 @@
 
 http://qiita.com/osakanafish/items/731dc31168e3330dbcd0
 
-
+```
 brew update
 brew install argon/mas/mas
 brew install rcmdnk/file/brew-file
@@ -10,6 +10,8 @@ mkdir -p ~/.config/brewfile/
 mkdir -p ~/.cache/shell/
 ln ~/dotfiles/Brewfile ~/.config/brewfile/Brewfile
 brew file install
+```
+
 # vagrant を使う
 vagrant plugin install vagrant-vbguest
 
@@ -45,10 +47,10 @@ brew uninstall ricty
 
 # Rictyがインストールされていない場合tapでリポジトリを追加する
 
-'''
+```
 brew tap sanemat/font
 brew install --vim-powerline ricty
-'''
+```
 
 # 展開ディレクトリは環境に合わせる
 
