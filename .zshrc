@@ -134,5 +134,6 @@ setopt hist_ignore_all_dups
 #メタ文字(*,[],?…)が含まれているとファイル名だと勘違いする問題を解決
 setopt nonomatch
 
+# https://qiita.com/skkzsh/items/d63861293fd6bde1b0d8
 export PATH="$HOME/.phpenv/bin:$PATH"
-eval "$(phpenv init -)"
+which phpenv > /dev/null 2>&1 && eval "$(phpenv init -)"
