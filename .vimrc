@@ -36,9 +36,9 @@ if dein#load_state(s:dein_dir)
   call dein#save_state()
 endif
 
-" vimprocだけは最初にインストールしてする
-if dein#check_install(['vimproc'])
-  call dein#install(['vimproc'])
+" vimprocだけは最初にインストールする
+if dein#check_install(['vimproc.vim'])
+  call dein#install(['Shougo/vimproc.vim'])
 endif
 " もし、未インストールものものがあったらインストール
 if dein#check_install()
@@ -46,8 +46,6 @@ if dein#check_install()
 endif
 
 " call map(dein#check_clean(), "delete(v:val, 'rf')")
-
-
 
 if has('vim_starting')
   call dein#call_hook('source')
