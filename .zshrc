@@ -139,9 +139,13 @@ setopt nonomatch
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PATH=$PATH:/usr/local/share/git-core/contrib/diff-highlight
+# dockerにloginする。第一引数：container NAME or container id, 第二引数：user name
+# tmux 使用時にpaneの背景色が変わる。
 alias docker-login='(){tmux select-pane -P "fg=default,bg=colour234"; docker exec -it $1 bash -lc "su - $2";tmux select-pane -P "fg=default,bg=default" }'
+# tmux 使用時にpaneの背景色が変わる。それ以外は通常のsshと同様
 alias ssh='(){tmux select-pane -P "fg=default,bg=colour232"; ssh $@; tmux select-pane -P "fg=default,bg=default"}'
-
+# localhostのipを定数に保存
+export LOCAL_HOST_IP=`ifconfig en0 | grep inet | grep -v inet6 | sed -E "s/inet ([0-9]{1,3}.[0-9]{1,3}.[0-9].{1,3}.[0-9]{1,3}) .*$/\1/" | tr -d "\t"`
 
 # dockerコンテナIDをpecoで選択してプロンプトにinsertする
 function anyframe-widget-insert-docker-ps() {
