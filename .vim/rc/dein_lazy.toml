@@ -33,6 +33,16 @@ let g:neocomplete_php_locale = 'ja'
 '''
 on_ft = ['php']
 
+# <CTRL> + Pでphp docを挿入する
+[[plugins]]
+repo = 'vim-scripts/PDV--phpDocumentor-for-Vim'
+hook_add = '''
+inoremap <C-P> <Esc>:call PhpDocSingle()<CR>i
+nnoremap <C-P> :call PhpDocSingle()<CR>
+vnoremap <C-P> :call PhpDocSingle()<CR>
+'''
+on_ft = ['php']
+
 # emmetをvimで
 [[plugins]]
 repo  = 'mattn/emmet-vim'
