@@ -183,3 +183,7 @@ let g:lightline.component = {
 [[plugins]] #
 repo = 'kmnk/vim-unite-giti'
 depends = ['unite.vim']
+
+# https://github.com/terryma/vim-multiple-cursors
+[[plugins]]
+repo = 'terryma/vim-multiple-cursors'
