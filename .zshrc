@@ -112,10 +112,11 @@ add-zsh-hook chpwd chpwd_recent_dirs
 # ------------------------------------
 #  # cdr の設定
 # ------------------------------------
+CHPW_DIRS=$HOME/.cache/shell/chpwd-recent-dirs; [ ! -e $CHPW_DIRS ] && touch $CHPW_DIRS
 zstyle ':completion:*' recent-dirs-insert both
 zstyle ':chpwd:*' recent-dirs-max 500
 zstyle ':chpwd:*' recent-dirs-default true
-zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/shell/chpwd-recent-dirs"
+zstyle ':chpwd:*' recent-dirs-file $CHPW_DIRS
 zstyle ':chpwd:*' recent-dirs-pushd true
 
 
