@@ -75,11 +75,8 @@ brew install mas
 brew install mcrypt
 brew install memcached
 brew install mhash
-brew install mongodb
 brew install mpfr
-brew install mysql@5.7
 brew install ncurses
-brew install nginx
 brew install nkf
 brew install nmap
 brew install nodebrew
@@ -101,19 +98,14 @@ brew install pkg-config
 brew install plantuml
 brew install pstree
 brew install pyenv
-brew install python
-brew install python@2
 brew install rbenv
 brew install re2c
 brew install readline
 brew install reattach-to-user-namespace
-brew install redis
-brew install ruby
 brew install ruby-build
 brew install screen
 brew install sdl2
 brew install snappy
-brew install sqlite
 brew install tbb
 brew install telnet
 brew install tesseract
@@ -121,7 +113,7 @@ brew install the_silver_searcher
 brew install theora
 brew install tmux
 brew install tree
-brew install vim
+brew install vim --with-lua --with-python3
 brew install webp
 brew install wget
 brew install x264
@@ -149,7 +141,7 @@ brew tap rcmdnk/file
 brew install brew-file
 
 brew tap sanemat/font
-brew install ricty
+brew install ricty --vim-powerline 
 
 # Other Cask applications
 brew cask install gimp
@@ -161,19 +153,10 @@ brew cask install xquartz
 # App Store applications
 mas install 443987910 1Password (6.8.9)
 mas install 417375580 BetterSnapTool (1.9)
-mas install 404789253 Cornerstone (2.7.18)
 mas install 406056744 Evernote (7.7)
-mas install 682658836 GarageBand (10.3.2)
-mas install 408981434 iMovie (10.1.10)
-mas install 409183694 Keynote (8.3)
 mas install 539883307 LINE (5.12.0)
 mas install 992076693 MindNode (2.5.8)
-mas install 409203825 Numbers (5.3)
-mas install 409201541 Pages (7.3)
-mas install 669475285 PG Commander (1.5.9)
-mas install 1007457278 Realm Browser (3.0.1)
 mas install 425955336 Skitch (2.8.2)
 mas install 803453959 Slack (3.3.3)
 mas install 1278508951 Trello (2.10.8)
 mas install 485812721 TweetDeck (3.9.889)
-mas install 497799835 Xcode (10.1)
