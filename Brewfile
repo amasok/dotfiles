@@ -98,6 +98,7 @@ brew install pkg-config
 brew install plantuml
 brew install pstree
 brew install pyenv
+brew install python
 brew install rbenv
 brew install re2c
 brew install readline
@@ -132,8 +133,10 @@ brew tap homebrew/cask
 brew cask install docker
 brew cask install google-chrome
 brew cask install iterm2
-brew cask install mysqlworkbench
+brew cask install teamsql
 brew cask install wireshark
+brew cask install unity-hub
+brew cask install google-japanese-ime
 
 brew tap argon/mas
 
