@@ -137,6 +137,7 @@ brew cask install teamsql
 brew cask install wireshark
 brew cask install unity-hub
 brew cask install google-japanese-ime
+brew cask install postman
 
 brew tap argon/mas
 
