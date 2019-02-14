@@ -129,6 +129,9 @@ brew tap homebrew/brewdler
 
 brew tap homebrew/services
 
+brew tap cjbassi/gotop
+brew install gotop
+
 brew tap homebrew/cask
 brew cask install docker
 brew cask install google-chrome
