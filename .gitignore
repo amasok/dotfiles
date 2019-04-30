@@ -1,2 +1,6 @@
 *.swp
 .DS_Store
+!.ssh/config
+!.ssh/conf.d/
+.ssh/conf.d/*
+.ssh/*
