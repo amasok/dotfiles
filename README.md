@@ -1,27 +1,43 @@
 
 
 http://qiita.com/osakanafish/items/731dc31168e3330dbcd0
+# 事前準備
+XCodeをインストールする
 
+```sh
+git clone -b os/osx git@github.com:amasok/dotfiles.git
+```
 
-brew update
-brew install argon/mas/mas
-brew install rcmdnk/file/brew-file
-mkdir -p ~/.config/brewfile/
-mkdir -p ~/.cache/shell/
-ln ~/dotfiles/Brewfile ~/.config/brewfile/Brewfile
-brew file install
-# vagrant を使う
-vagrant plugin install vagrant-vbguest
+# Brewでインストールできるものをインストールする。
+
+```sh
+./Brewfile
+```
+一度terminalを再起動したほうが良い
+
+# シンボリックリンクを貼る
+
+```
+bash scripts/link.sh
+```
+
+# vimのプラグインインストール
+
+```
+bash scripts/vimrc.sh
+```
 
 # tpm (tmux plugin manager)のインストール
 
 ```
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-tmux source ~/.tmux.conf
+bash scripts/tmux.sh
 ```
 インストール開始
 ctrl + s I
 
+# iterm2に設定ファイルを読み込ませる
+
+iterm2/com.googlecode.iterm2.plist
 
 # zsh変更
 
@@ -30,31 +46,11 @@ sudo echo /usr/local/bin/zsh >> /etc/shells
 chsh -s /usr/local/bin/zsh
 ```
 
-# シンボリックリンクを貼る
+# powerlineのインストールと設定を行う
+https://qiita.com/park-jh/items/557a9d5b470947aef2f5
 
-```
-ln -s ~/dotfiles/.zshrc ~/.zshrc
-ln -s ~/dotfiles/.zsenv ~/.zshenv
-ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/.vim ~/.vim
-ln -s ~/dotfiles/.vimrc ~/.vimrc
-```
+- iterm2に設定をする。
+- vimで動いているか確認をする。
 
-# すでにRictyがインストールされている場合
-brew uninstall ricty
-
-# Rictyがインストールされていない場合tapでリポジトリを追加する
-
-'''
-brew tap sanemat/font
-brew install --vim-powerline ricty
-'''
-
-# 展開ディレクトリは環境に合わせる
-
-```
-cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
-```
-
-# フォントのキャッシュ削除
+※ フォントのキャッシュ削除
 fc-cache -vf
