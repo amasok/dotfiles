@@ -1,2 +1,5 @@
 *.swp
 .DS_Store
+.ssh/*
+!.ssh/conf.d/.gitkeep
+!.ssh/config
