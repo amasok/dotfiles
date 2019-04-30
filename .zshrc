@@ -16,6 +16,8 @@ zplug "plugins/git",   from:oh-my-zsh, if:"(( $+commands[git] ))"
 zplug "lib/clipboard", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
 zplug "mollifier/anyframe"
 zplug "b4b4r07/enhancd", use:init.sh
+zplug 'superbrothers/zsh-kubectl-prompt'
+zplug 'docker/cli', use:contrib/completion/zsh/
 # 必要ならばアーキテクチャ指定
 zplug "peco/peco", as:command, from:gh-r, use:"*amd64*"
 
@@ -140,7 +142,7 @@ setopt nonomatch
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PATH=$PATH:/usr/local/share/git-core/contrib/diff-highlight
 alias docker-login='(){tmux select-pane -P "fg=default,bg=colour234"; docker exec -it $1 bash -lc "su - $2";tmux select-pane -P "fg=default,bg=default" }'
-alias cssh='(){tmux select-pane -P "fg=default,bg=colour232"; shh $@; tmux select-pane -P "fg=default,bg=default"}'
+alias cssh='(){tmux select-pane -P "fg=default,bg=colour232";ssh $@; tmux select-pane -P "fg=default,bg=default"}'
 
 
 # dockerコンテナIDをpecoで選択してプロンプトにinsertする
@@ -152,3 +154,48 @@ function anyframe-widget-insert-docker-ps() {
 }
 zle -N anyframe-widget-insert-docker-ps
 bindkey '^xd' anyframe-widget-insert-docker-ps
+
+# ------------------------------------
+# XQuartzを入れる
+# ------------------------------------
+export DISPLAY_MAC=`ifconfig en0 | grep "inet " | cut -d " " -f2`:0
+function startx() {
+  if [ -z "$(ps -ef|grep XQuartz|grep -v grep)" ] ; then
+    open -a XQuartz
+    socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\" &
+  fi
+}
+# ------------------------------------
+# sshの接続先を^xsshで選択可能にする
+# ├  conf.d
+# │   ├ project1
+# │   │     config
+# │   │     project1_rsa
+# │   └ project2
+# │         config
+# │         project2_rsa
+# ├  config
+# └  id_rsa
+# ------------------------------------
+
+function anyframe-widget-ssh () {
+  awk '
+    tolower($1)=="host" {
+      for (i=2; i<=NF; i++) {
+        if ($i !~ "[*?]") {
+          printf $i
+        }
+      }
+    }
+    tolower($1)=="hostname" {
+      for (i=2; i<=NF; i++) {
+          print  " ("$i")"
+      }
+    }
+    ' ~/.ssh/conf.d/*/config \
+    | anyframe-selector-auto \
+    | awk '{print $1}' \
+    | anyframe-action-execute ssh
+}
+zle -N anyframe-widget-ssh
+bindkey "^xssh" anyframe-widget-ss
