@@ -203,4 +203,4 @@ function anyframe-widget-ssh () {
     | anyframe-action-execute ssh
 }
 zle -N anyframe-widget-ssh
-bindkey "^xssh" anyframe-widget-ss
+bindkey "^xssh" anyframe-widget-ssh
