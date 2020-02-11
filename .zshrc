@@ -1,5 +1,5 @@
 ZSHHOME="${HOME}/.zshrc.d"
-
+export PATH="$HOME/dotfiles/bin:$PATH"
 if [ -d $ZSHHOME -a -r $ZSHHOME -a \
      -x $ZSHHOME ]; then
     for i in $ZSHHOME/*; do

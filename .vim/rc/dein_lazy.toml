@@ -51,3 +51,7 @@ on_ft = ['css','html']
 [[plugins]]
 repo  = 'leafgarland/typescript-vim'
 on_ft = ['typescript', 'ts']
+
+[[plugins]] # vue syntax
+repo = 'posva/vim-vue'
+on_ft = 'vue'

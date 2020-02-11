@@ -1,6 +1,6 @@
 [user]
-	email = takeda@amasok.com
-	name = amasok
+	email = k_takeda@serori.co.jp
+	name = serori-takeda
 [core]
 	editor = vim -c \"set fenc=utf-8\"
 [color]
@@ -51,3 +51,7 @@
     pom = push origin master
     ste = !vim $(git status -s | cut -d' ' -f3 | peco)
     fix = rebase -i HEAD~2
+
+[diff "xlsx"]
+    binary = true
+    textconv = $GOPATH/bin/git-xlsx-textconv
