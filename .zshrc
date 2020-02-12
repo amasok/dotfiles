@@ -40,3 +40,5 @@ function precmd() {
     fi
   fi
 }
+
+tmux_automatically_attach_session
