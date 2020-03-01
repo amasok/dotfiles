@@ -1,0 +1,23 @@
+#/bin/bash
+
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+declare -a info=($($SCRIPT_DIR/../bin/get_os_info.sh))
+
+case ${info[0]} in
+ubuntu)
+    echo "ubuntu"
+    /bin/bash $SCRIPT_DIR/install_apt.sh
+
+    # if [[ ${info[1]} == "x86_64" ]]; then
+    #     echo x86_64
+    # fi
+    ;;
+mac)
+    echo 'mac install by brew.'
+   # brew系のインストール
+    /bin/bash $SCRIPT_DIR/install_brew.sh
+    ;;
+*)
+    echo "unsupported"
+    ;;
+esac
