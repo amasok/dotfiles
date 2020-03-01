@@ -1,6 +1,10 @@
 *.swp
 .DS_Store
+<<<<<<< HEAD
 !.ssh/config
-!.ssh/conf.d/
 .ssh/conf.d/*
 .ssh/*
+!.ssh/conf.d/.gitkeep
+!.ssh/config
+=======
+>>>>>>> origin/os/osx

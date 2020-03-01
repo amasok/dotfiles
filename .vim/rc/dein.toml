@@ -2,25 +2,10 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/vimproc'
-hook_post_update = '''
-  if dein#util#_is_windows()
-    let cmd = 'tools\\update-dll-mingw'
-  elseif dein#util#_is_cygwin()
-    let cmd = 'make -f make_cygwin.mak'
-  elseif executable('gmake')
-    let cmd = 'gmake'
-  else
-    let cmd = 'make'
-  endif
-  let g:dein#plugin.build = cmd
-'''
+repo = 'Shougo/vimproc.vim'
+build = 'make'
 
-[[plugins]] # TMUX
-repo = 'tmux-plugins/vim-tmux'
-on_ft = 'tmux'
-
-[[plugins]] # solarized
+[[plugins]]
 repo = 'altercation/vim-colors-solarized'
 
 [[plugins]]
@@ -72,9 +57,6 @@ repo = 'gregsexton/gitv'
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 
-# emmetをvimで
-[[plugins]]
-repo = 'mattn/emmet-vim'
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
@@ -88,14 +70,6 @@ depends = ['context_filetype.vim']
 
 [[plugins]] # カーソル位置のコンテキストのftを判定するライブラリ
 repo = 'Shougo/context_filetype.vim'
-
-[[plugins]] # toml syntax
-repo = 'cespare/vim-toml'
-on_ft = 'toml'
-
-[[plugins]] # riot syntax
-repo = 'ryym/vim-riot'
-on_ft = 'tag'
 
 [[plugins]]
 repo = 'vim-scripts/Align'
@@ -140,6 +114,8 @@ repo = 'scrooloose/syntastic'
 hook_add = '''
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
+let g:syntastic_php_checkers = ['phpcs']
+let g:syntastic_php_phpcs_args='--standard=psr2'
 '''
 
 [[plugins]] #インデントを見やすくする
@@ -213,3 +189,7 @@ let g:lightline.component = {
 [[plugins]] #
 repo = 'kmnk/vim-unite-giti'
 depends = ['unite.vim']
+
+# https://github.com/terryma/vim-multiple-cursors
+[[plugins]]
+repo = 'terryma/vim-multiple-cursors'
