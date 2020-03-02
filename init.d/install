@@ -21,3 +21,5 @@ mac)
     echo "unsupported"
     ;;
 esac
+
+/bin/bash $SCRIPT_DIR/install_anyenv.sh

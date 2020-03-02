@@ -30,7 +30,7 @@ clear
 #現在フォーカスしているメニュー
 current_line=0
 
-source $SCRIPT_DIR/../bin/select_menu.sh
+source $SCRIPT_DIR/../.zshrc.d/select_menu.zsh
 
 SELECT_LOOP
 DOIT

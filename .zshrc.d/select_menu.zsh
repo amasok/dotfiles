@@ -1,4 +1,3 @@
-
 #メニュー一覧を表示
 function MENU {
     echo "移動:[↑]or[↓], 選択:[SPACE], 決定:[ENTER]"
