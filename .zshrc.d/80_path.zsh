@@ -1,8 +1,14 @@
 
 if [ -d $HOME/.anyenv ]
 then
-    export PATH="$HOME/.anyenv/bin:$PATH"
-    eval "$(anyenv init -)"
+    # vscodeでanyenvのpathを読み込んでくれないので読み込み順を変更する
+    # https://dev.classmethod.jp/articles/anyenv-set-path-for-visual-studio-code/
+		export PATH="$HOME/.anyenv/bin:$PATH"
+		eval "$(anyenv init -)"
+		for D in `ls $HOME/.anyenv/envs`
+		do
+		  export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
+		done
 fi
 
 if [ -d $HOME/bin ]
