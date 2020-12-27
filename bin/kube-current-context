@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+if kubectl_status=$(kubectl config current-context 2>/dev/null); then
+  kubecontext_info="#[underscore]#[bg=colour241,fg=colour118]$(kubectl config current-context)"
+else
+  kubecontext_info=""
+fi
+aws_profile_info="#[underscore]#[bg=colour241,fg=colour120] a $AWS_PROFILE"
+echo "$kubecontext_info"

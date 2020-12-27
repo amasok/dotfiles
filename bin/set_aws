@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -n "$TMUX" ]; then
+  $TMUX_PANE
+  unset $(tmux show-env | sed -n 's/^-//p')
+  eval export $(tmux show-env | sed -n 's/$/"/; s/=/="/p')
+else
+fi
+
