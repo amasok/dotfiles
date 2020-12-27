@@ -1,0 +1,1 @@
+/Users/kosuke.takeda/.vim/bundle/vim-code-dark.git/colors/codedark.vim

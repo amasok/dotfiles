@@ -1,9 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/kosuke.takeda/works/sensecare/icare'
-let g:netrw_dirhist_2='/Users/kosuke.takeda/works/sensecare'
-let g:netrw_dirhist_3='/Users/kosuke.takeda/works'
-let g:netrw_dirhist_4='/Users/kosuke.takeda'
-let g:netrw_dirhist_5='/Users/k_takeda/.tmux'
-let g:netrw_dirhist_6='/Users/k_takeda/.tmux/plugins'
-let g:netrw_dirhist_7='/Users/k_takeda/.tmux'
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/Users/kosuke.takeda/dotfiles'
