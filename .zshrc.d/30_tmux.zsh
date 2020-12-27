@@ -61,3 +61,25 @@ function tmux_automatically_attach_session()
         fi
     fi
 }
+
+function tmux-session-refresh () {
+  if [ -n "$TMUX" ]; then
+    unset $(tmux show-env | sed -n 's/^-//p')
+    eval export $(tmux show-env | sed -n 's/$/"/; s/=/="/p')
+  fi
+}
+
+function export-aws () {
+  if [ -n "$1" ]; then
+    export AWS_PROFILE=$1
+  fi
+
+  if [ -n "$TMUX" -a -n "$1" ]; then
+
+    tmux_pane=$(echo $TMUX_PANE | sed 's/%//')
+    tmux setenv AWS_PROFILE$tmux_pane $1
+    echo $(tmux show-environment AWS_PROFILE$tmux_pane | cut -d = -f2)
+  else
+    echo $AWS_PROFILE
+  fi
+}

@@ -36,7 +36,7 @@ function anyframe-widget-ssh () {
           print  " ("$i")"
       }
     }
-    ' ~/.ssh/conf.d/*/config \
+    ' ~/.ssh/conf.d/*/config* \
     | anyframe-selector-auto \
     | awk '{print $1}' \
     | anyframe-action-execute ssh
