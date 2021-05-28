@@ -1,5 +1,5 @@
 #! /bin/bash
-DOT_FILES=( .zshrc .zshenv .gitconfig .vimrc .vim .ssh bin .tmux.conf)
+DOT_FILES=( .zshrc .zshrc.d .zshenv .gitconfig .vimrc .vim .ssh bin .tmux.conf)
 
 # シンボリックリンクの作成
 for file in ${DOT_FILES[@]}

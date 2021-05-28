@@ -55,3 +55,8 @@ on_ft = ['typescript', 'ts']
 [[plugins]] # vue syntax
 repo = 'posva/vim-vue'
 on_ft = 'vue'
+
+[[plugins]] # terraform syntax
+repo = 'hashivim/vim-terraform'
+on_ft = 'tf'
+

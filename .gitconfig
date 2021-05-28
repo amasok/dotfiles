@@ -1,6 +1,7 @@
 [user]
-	email = k_takeda@serori.co.jp
-	name = serori-takeda
+  name = k_takeda
+  email = k_takeda@serori.co.jp
+  useConfigOnly = true
 [core]
 	editor = vim -c \"set fenc=utf-8\"
 [color]
@@ -54,3 +55,7 @@
 [diff "xlsx"]
     binary = true
     textconv = $GOPATH/bin/git-xlsx-textconv
+[includeIf "gitdir:~/works/serori/"]
+	path = .gitconfig_serori
+[includeIf "gitdir:~/works/cordeco/"]
+	path = .gitconfig_cordeco

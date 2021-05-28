@@ -26,17 +26,20 @@ function anyframe-widget-ssh () {
   awk '
     tolower($1)=="host" {
       for (i=2; i<=NF; i++) {
-        if ($i !~ "[*?]") {
+        if ( ($i !~ "[*?]") || !($i !~ "[gw]")) {
           printf $i
         }
       }
     }
     tolower($1)=="hostname" {
       for (i=2; i<=NF; i++) {
-          print  " ("$i")"
+          printf " ("$i")"
       }
     }
-    ' ~/.ssh/conf.d/*/config* \
+    $1=="" {
+        print ""
+    }
+    ' ~/.ssh/conf.d/*/*config* \
     | anyframe-selector-auto \
     | awk '{print $1}' \
     | anyframe-action-execute ssh

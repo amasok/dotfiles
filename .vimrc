@@ -71,6 +71,10 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 
+Plug 'leafgarland/typescript-vim'
+" Plug 'projectfluent/fluent.vim'
+Plug 'yuzoiwasaki/fluentd.vim'
+
 Plug 'tpope/vim-commentary'
 
 "" git
