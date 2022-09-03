@@ -1,6 +1,6 @@
 [user]
-  name = k_takeda
-  email = k_takeda@serori.co.jp
+  name = amasok
+  email = amasok32@gmail.com
   useConfigOnly = true
 [core]
 	editor = vim -c \"set fenc=utf-8\"
@@ -59,3 +59,6 @@
 	path = .gitconfig_serori
 [includeIf "gitdir:~/works/cordeco/"]
 	path = .gitconfig_cordeco
+
+[includeIf "gitdir:~/ghq/github.com/MobilityTechnologies/"]
+	path = .gitconfig_mot

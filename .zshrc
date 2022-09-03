@@ -9,6 +9,8 @@ if [ -d $ZSHHOME -a -r $ZSHHOME -a \
     done
 fi
 
+bindkey -e
+
 CUSTOM_ZSHHOME="${HOME}/.zshrc.d/custom.d"
 
 if [ -d $CUSTOM_ZSHHOME -a -r $CUSTOM_ZSHHOME -a \
@@ -51,14 +53,14 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
-if [ -d $HOME/.anyenv ] ; then
-  export PATH="$HOME/.anyenv/bin:$PATH"
-  eval "$(anyenv init -)"
-  for D in `\ls $HOME/.anyenv/envs`
-  do
-    export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
-  done
-fi
+# if [ -d $HOME/.anyenv ] ; then
+#   export PATH="$HOME/.anyenv/bin:$PATH"
+#   eval "$(anyenv init -)"
+#   for D in `\ls $HOME/.anyenv/envs`
+#   do
+#     export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
+#   done
+# fi
 export PATH="/usr/local/opt/bison/bin:$PATH"
 export PATH="/usr/local/opt/libxml2/bin:$PATH"
 export PATH="/usr/local/opt/bzip2/bin:$PATH"
