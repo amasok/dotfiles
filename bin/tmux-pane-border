@@ -59,7 +59,7 @@ else
 
   tmux_pane=$(echo $TMUX_PANE | sed 's/%//')
   if aws_status=$(tmux show-environment AWS_PROFILE$tmux_pane | cut -d = -f2 2>/dev/null); then
-    aws_prof="#[underscore]#[bg=white,fg=colour140] a $aws_status"
+    aws_prof="#[underscore]#[bg=white,fg=colour140] $aws_status"
   else
     # aws_profile=$TMUX_PANE
     aws_prof=test

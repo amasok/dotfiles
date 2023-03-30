@@ -1,8 +1,8 @@
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
     command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
         print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
         print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
@@ -14,7 +14,7 @@ autoload -Uz _zinit
 ### End of Zinit's installer chunk
 
 # Plugin history-search-multi-word loaded with investigating.
-zinit ice wait'1'; zinit load zdharma/history-search-multi-word
+zinit ice wait'1'; zinit load zdharma-continuum/history-search-multi-word
 
 # Load the pure theme, with zsh-async library that's bundled with it.
 PS1="LOADING ➜  ~ " # provide a nice prompt till the theme loads
@@ -35,10 +35,14 @@ zinit cdreplay -q
 
 # コマンドをハイライトするプラグインを遅延ロードします。
 zinit ice wait'1' atload '_zsh_highlight'
-zinit light 'zdharma/fast-syntax-highlighting'
+zinit light 'zdharma-continuum/fast-syntax-highlighting'
 # コマンドをサジェストするプラグインを遅延ロードします。
 zinit ice wait'!0' atload '_zsh_autosuggest_start'
 zinit light 'zsh-users/zsh-autosuggestions'
+# 各種言語のバージョン管理
+zinit light asdf-vm/asdf
+fpath=(${ASDF_DIR}/completions $fpath)
+autoload -Uz compinit && compinit
 
 zstyle ":anyframe:selector:" use fzf-tmux
 

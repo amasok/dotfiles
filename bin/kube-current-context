@@ -5,5 +5,5 @@ if kubectl_status=$(kubectl config current-context 2>/dev/null); then
 else
   kubecontext_info=""
 fi
-aws_profile_info="#[underscore]#[bg=colour241,fg=colour120] a $AWS_PROFILE"
+aws_profile_info="#[underscore]#[bg=colour241,fg=colour120] $AWS_PROFILE"
 echo "$kubecontext_info"

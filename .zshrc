@@ -1,5 +1,5 @@
 ZSHHOME="${HOME}/.zshrc.d"
-export PATH="$HOME/dotfiles/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 export HOMEBREW_PREFIX="/usr/local"
 if [ -d $ZSHHOME -a -r $ZSHHOME -a \
      -x $ZSHHOME ]; then
