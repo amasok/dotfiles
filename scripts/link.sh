@@ -8,7 +8,7 @@ do
     echo "already exists $HOME/$file"
   else
       # 存在しない場合
-    ln -s -i $HOME/dotfiles/$file $HOME/$file
+    ln -s -i $HOME/ghq/github.com/amasok/dotfiles/$file $HOME/$file
     echo "create symbolic link $HOME/dotfiles/$file $HOME/$file"
   fi
 done

@@ -8,7 +8,7 @@ DOT_FILES=( .zshrc .zshenv .gitconfig .vimrc .vim .tmux.conf)
 # シンボリックリンクの作成
 for file in ${DOT_FILES[@]}
 do
-  ln -s -i $HOME/dotfiles/$file $HOME/$file
+  ln -s -i $HOME/ghq/github.com/amasok/dotfiles/$file $HOME/$file
 done
 
 
