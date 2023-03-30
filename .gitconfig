@@ -55,10 +55,12 @@
 [diff "xlsx"]
     binary = true
     textconv = $GOPATH/bin/git-xlsx-textconv
-[includeIf "gitdir:~/works/serori/"]
-	path = .gitconfig_serori
-[includeIf "gitdir:~/works/cordeco/"]
-	path = .gitconfig_cordeco
+[includeIf "gitdir:~/ghq/github.com/Knowable-Inc/"]
+	path = .gitconfig_knowable
+[includeIf "gitdir:~/ghq/github.com/chokobai/"]
+	path = .gitconfig_crenawo
 
 [includeIf "gitdir:~/ghq/github.com/MobilityTechnologies/"]
 	path = .gitconfig_mot
+[init]
+	defaultBranch = main
