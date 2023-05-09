@@ -58,14 +58,14 @@ else
   directory="$3"
 
   tmux_pane=$(echo $TMUX_PANE | sed 's/%//')
-  if aws_status=$(tmux show-environment AWS_PROFILE$tmux_pane | cut -d = -f2 2>/dev/null); then
-    aws_prof="#[underscore]#[bg=white,fg=colour140] a $aws_status"
-  else
-    # aws_profile=$TMUX_PANE
-    aws_prof=test
-  fi
+  # if aws_status=$(tmux show-environment AWS_PROFILE$tmux_pane | cut -d = -f2 2>/dev/null); then
+  #   aws_prof="#[underscore]#[bg=white,fg=colour140] a $aws_status"
+  # else
+  #   # aws_profile=$TMUX_PANE
+  #   aws_prof=test
+  # fi
     # aws_profile=test
 fi
 echo "$(tmux show-environment AWS_PROFILE$tmux_pane)"
-echo "#[bg=colour013,fg=black]$ssh_hostname#[default]#[bg=black,fg=cyan]#[underscore]$directory#[default]$git_info $aws_prof "
+echo "#[bg=colour013,fg=black]$ssh_hostname#[default]#[bg=black,fg=cyan]#[underscore]$directory#[default]$git_info"
 

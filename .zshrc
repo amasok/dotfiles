@@ -8,7 +8,6 @@ if [ -d $ZSHHOME -a -r $ZSHHOME -a \
             [ \( -f $i -o -h $i \) -a -r $i ] && . $i
     done
 fi
-
 bindkey -e
 
 CUSTOM_ZSHHOME="${HOME}/.zshrc.d/custom.d"
@@ -69,3 +68,4 @@ export PATH="/usr/local/opt/libiconv/bin:$PATH"
 export PATH="/usr/local/opt/krb5/bin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

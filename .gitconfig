@@ -59,6 +59,12 @@
 	path = .gitconfig_serori
 [includeIf "gitdir:~/works/cordeco/"]
 	path = .gitconfig_cordeco
-
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [includeIf "gitdir:~/ghq/github.com/MobilityTechnologies/"]
-	path = .gitconfig_mot
+	path = .gitconfig_go
+[includeIf "gitdir:~/ghq/github.com/amasok/"]
+	path = .gitconfig_private

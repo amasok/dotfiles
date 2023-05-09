@@ -11,3 +11,5 @@ alias ssh='(){
     tmux set window-style "bg=colour239";
     tmux set window-active-style "bg=colour234";
 }'
+
+alias ctags='/usr/local/bin/ctags'
