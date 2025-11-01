@@ -70,6 +70,25 @@ config.keys = {
       end
     end),
   })},
+  -- Ctrl+s t: タブのタイトルを設定
+  { key = "t", mods = "LEADER", action = act.PromptInputLine({
+    description = "タブタイトルを入力（空でクリア）:",
+    action = wezterm.action_callback(function(window, pane, line)
+      if pane and pane:tab() then
+        local title = (line and line ~= "") and line or ""
+        pane:tab():set_title(title)
+        -- フォールバックマップにも保存
+        local tab_id = pane:tab().tab_id
+        if tab_id then
+          if title == "" then
+            tab_titles[tab_id] = nil
+          else
+            tab_titles[tab_id] = title
+          end
+        end
+      end
+    end),
+  })},
 }
 
 -- テーマ（おしゃれにする）
@@ -112,6 +131,9 @@ config.show_new_tab_button_in_tab_bar = false
 config.show_tab_index_in_tab_bar = false
 config.tab_bar_at_bottom = true
 config.tab_max_width = 50  -- タブの最大幅を50文字に設定（デフォルトは16）
+
+-- WezTerm の SetTabTitle が使えない環境のためのフォールバックマップ
+local tab_titles = {}
 
 -- タブのタイトルをカスタマイズ
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
@@ -172,34 +194,21 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   elseif hover then
     bg = "#45475a"  -- ホバー
   end
-  -- タイトル文字列
-  local title = " " .. index .. ": " .. display_title .. " "
+  -- 優先順位: 明示的に設定されたタブタイトル > pane.title（OSCで設定） > cwdベース表示
+  local explicit_tab = tab.tab_title
+  local pane_title = pane.title
+  -- フォールバックマップから値を取る
+  local fallback_tab = tab_titles[tab.tab_id]
+  local title_text = (explicit_tab and explicit_tab ~= "") and explicit_tab
+                     or (fallback_tab and fallback_tab ~= "") and fallback_tab
+                     or (pane_title and pane_title ~= "") and pane_title
+                     or ("" .. index .. ": " .. display_title)
+  local title = " " .. title_text .. " "
   return {
     { Background = { Color = bg } },
     { Foreground = { Color = fg } },
     { Text = title },
   }
-end)
-
--- ペインごとにパスを表示する擬似オーバーレイ
-wezterm.on("pane-focus-changed", function(window, pane)
-  local cwd_uri = pane:get_current_working_dir()
-  local cwd = ""
-  if cwd_uri then
-    cwd = cwd_uri:match("file://[^/]*(/.*)")
-    cwd = cwd:gsub("/Users/[^/]+", "~")
-  end
-
-  -- オーバーレイ内容
-  local text = " " .. cwd .. " "
-  local overlay = wezterm.format({
-    { Background = { Color = "#313244" } },
-    { Foreground = { Color = "#cdd6f4" } },
-    { Text = text },
-  })
-
-  -- 画面上部に擬似的に表示
-  window:show_overlay(overlay, { x = 0, y = 0 }, wezterm.time.now() + 1.5)
 end)
 
 -- ステータスバーをStarship風にかっこよく表示
