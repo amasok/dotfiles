@@ -1,7 +1,11 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
+local mux = wezterm.mux
 
 local config = {}
+
+-- 直前のワークスペース名を記録する変数
+local previous_workspace = nil
 
 -- prefix相当を Ctrl+s にする
 config.leader = { key="s", mods="CTRL", timeout_milliseconds=1000 }
@@ -42,6 +46,19 @@ config.keys = {
   -- ワークスペース関連のキーバインド
   -- Ctrl+s w: ワークスペース一覧から選択して切り替え
   { key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
+
+  -- Ctrl+s l: 直前のワークスペースに切り替え (tmuxの prefix + L 相当)
+  { key = "l", mods = "LEADER", action = wezterm.action_callback(function(window, pane)
+    if previous_workspace then
+      local current = window:active_workspace()
+      window:perform_action(
+        act.SwitchToWorkspace({ name = previous_workspace }),
+        pane
+      )
+      -- 切り替え後、現在のワークスペースを次回の「直前」として記録
+      previous_workspace = current
+    end
+  end)},
   
   -- Ctrl+s Shift+W: ワークスペース名を変更
   { key = "W", mods = "LEADER|SHIFT", action = act.PromptInputLine({
@@ -124,7 +141,6 @@ config.window_frame = {
   inactive_titlebar_bg = "#1e1e2e",
 }
 
-local mux = wezterm.mux
 config.use_fancy_tab_bar = false
 config.enable_tab_bar = true
 config.show_new_tab_button_in_tab_bar = false
@@ -245,6 +261,11 @@ wezterm.on("update-status", function(window, pane)
 
   -- 現在のワークスペース名
   local workspace = window:active_workspace()
+
+  -- 初回起動時に現在のワークスペースを記録
+  if workspace and previous_workspace == nil then
+    previous_workspace = workspace
+  end
   
   -- カレントディレクトリを取得
   local cwd_uri = pane:get_current_working_dir()
