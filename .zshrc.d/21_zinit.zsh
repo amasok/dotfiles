@@ -24,7 +24,8 @@ zinit light DFurnes/purer
 zinit ice wait'1'; zinit light "b4b4r07/enhancd"
 
 # fzf を使ったウィジェットが複数バンドルされたプラグインです。
-zinit ice wait'1'; zinit light "vintersnow/anyframe"
+# anyframeはアーカイブされたため、fzfベースの関数を50_anyframe.zshで定義
+# zinit ice wait'1'; zinit light "vintersnow/anyframe"
 
 # ls よりも使いやすく見やすいディレクトリの一覧表示のコマンドを定義するプラグインです。
 zinit ice pick'k.sh'
@@ -44,7 +45,8 @@ zinit light asdf-vm/asdf
 fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit && compinit
 
-zstyle ":anyframe:selector:" use fzf-tmux
+# anyframeの設定はfzfベースの関数に置き換えたためコメントアウト
+# zstyle ":anyframe:selector:" use fzf-tmux
 
 # ------------------------------------
 # cdr, add-zsh-hook を有効にする
