@@ -111,7 +111,75 @@ config.enable_tab_bar = true
 config.show_new_tab_button_in_tab_bar = false
 config.show_tab_index_in_tab_bar = false
 config.tab_bar_at_bottom = true
+config.tab_max_width = 50  -- タブの最大幅を50文字に設定（デフォルトは16）
 
+-- タブのタイトルをカスタマイズ
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+  local pane = tab.active_pane
+  local cwd_uri = pane.current_working_dir
+  
+  -- ディレクトリパスを取得
+  local cwd = ""
+  local display_title = ""
+  
+  if cwd_uri then
+    -- URIからファイルパスを取得
+    cwd = cwd_uri.file_path or ""
+    
+    -- ホームディレクトリを~に置き換え
+    local home = wezterm.home_dir
+    if cwd:sub(1, #home) == home then
+      cwd = "~" .. cwd:sub(#home + 1)
+    end
+    -- パスを/で分割（~は除外）
+    local parts = {}
+    local path_without_tilde = cwd:gsub("^~/", "")  -- ~/ を除去してから分割
+    if path_without_tilde ~= "" then
+      for part in path_without_tilde:gmatch("[^/]+") do
+        table.insert(parts, part)
+      end
+    end
+    -- 少なくとも現在のディレクトリを表示、可能なら3階層まで
+    if #parts == 0 then
+      display_title = "~"
+    elseif #parts == 1 then
+      -- 1階層のみ: ~/dir
+      display_title = parts[1]
+    elseif #parts == 2 then
+      -- 2階層: dir1/dir2
+      display_title = parts[1] .. "/" .. parts[2]
+    elseif #parts == 3 then
+      -- 3階層: dir1/dir2/dir3
+      display_title = parts[1] .. "/" .. parts[2] .. "/" .. parts[3]
+    else
+      -- 4階層以上: 最後の3つを表示
+      local n = #parts
+      display_title = "…/" .. parts[n-2] .. "/" .. parts[n-1] .. "/" .. parts[n]
+    end
+  else
+    display_title = "?"
+  end
+  -- タブ番号
+  local index = tab.tab_index + 1
+  -- アクティブかどうか
+  local is_active = tab.is_active
+  -- 色設定
+  local bg = "#313244"  -- 非アクティブ
+  local fg = "#bac2de"
+  if is_active then
+    bg = "#89b4fa"  -- アクティブ（青）
+    fg = "#1e1e2e"
+  elseif hover then
+    bg = "#45475a"  -- ホバー
+  end
+  -- タイトル文字列
+  local title = " " .. index .. ": " .. display_title .. " "
+  return {
+    { Background = { Color = bg } },
+    { Foreground = { Color = fg } },
+    { Text = title },
+  }
+end)
 
 -- ペインごとにパスを表示する擬似オーバーレイ
 wezterm.on("pane-focus-changed", function(window, pane)
@@ -134,28 +202,118 @@ wezterm.on("pane-focus-changed", function(window, pane)
   window:show_overlay(overlay, { x = 0, y = 0 }, wezterm.time.now() + 1.5)
 end)
 
--- ステータスバーの左端にワークスペース名を表示
+-- ステータスバーをStarship風にかっこよく表示
 wezterm.on("update-status", function(window, pane)
+  -- Catppuccin Mocha カラーパレット
+  local colors = {
+    rosewater = "#f5e0dc",
+    flamingo = "#f2cdcd",
+    pink = "#f5c2e7",
+    mauve = "#cba6f7",
+    red = "#f38ba8",
+    maroon = "#eba0ac",
+    peach = "#fab387",
+    yellow = "#f9e2af",
+    green = "#a6e3a1",
+    teal = "#94e2d5",
+    sky = "#89dceb",
+    sapphire = "#74c7ec",
+    blue = "#89b4fa",
+    lavender = "#b4befe",
+    text = "#cdd6f4",
+    subtext1 = "#bac2de",
+    subtext0 = "#a6adc8",
+    overlay2 = "#9399b2",
+    overlay1 = "#7f849c",
+    overlay0 = "#6c7086",
+    surface2 = "#585b70",
+    surface1 = "#45475a",
+    surface0 = "#313244",
+    base = "#1e1e2e",
+    mantle = "#181825",
+    crust = "#11111b",
+  }
+
+  -- 現在のワークスペース名
   local workspace = window:active_workspace()
-  local cells = {}
+  
+  -- カレントディレクトリを取得
+  local cwd_uri = pane:get_current_working_dir()
+  local cwd = ""
+  if cwd_uri then
+    cwd = cwd_uri.file_path
+    cwd = cwd:gsub(wezterm.home_dir, "~")
+    -- ディレクトリ名のみを表示（パスが長い場合）
+    local basename = cwd:match("([^/]+)$") or cwd
+    cwd = basename
+  end
 
-  -- ワークスペース名を左端に表示
-  table.insert(cells, wezterm.format({
-    { Background = { Color = "#89b4fa" } },
-    { Foreground = { Color = "#1e1e2e" } },
-    { Text = " " .. workspace .. " " },
-  }))
+  -- Git情報を取得（オプション）
+  local git_branch = ""
+  local success, stdout, stderr = wezterm.run_child_process({
+    "git",
+    "-C",
+    cwd_uri and cwd_uri.file_path or ".",
+    "branch",
+    "--show-current"
+  })
+  if success then
+    git_branch = stdout:gsub("%s+", "")
+  end
 
-  -- 日時を右端に表示（オプション）
-  local date = wezterm.strftime(" %Y-%m-%d %H:%M:%S ")
-  table.insert(cells, wezterm.format({
-    { Background = { Color = "#313244" } },
-    { Foreground = { Color = "#cdd6f4" } },
-    { Text = date },
-  }))
+  -- 左側のステータス（ワークスペース + ディレクトリ + Git）
+  local left_status = {}
+  -- ワークスペース
+  table.insert(left_status, { Background = { Color = colors.blue } })
+  table.insert(left_status, { Foreground = { Color = colors.base } })
+  table.insert(left_status, { Text = " 󱂬 " .. workspace .. " " })
+  -- セパレーター
+  table.insert(left_status, { Background = { Color = colors.surface0 } })
+  table.insert(left_status, { Foreground = { Color = colors.blue } })
+  table.insert(left_status, { Text = "" })
+  -- ディレクトリ
+  if cwd ~= "" then
+    table.insert(left_status, { Background = { Color = colors.surface0 } })
+    table.insert(left_status, { Foreground = { Color = colors.sky } })
+    table.insert(left_status, { Text = "  " .. cwd .. " " })
+  end
+  -- Git ブランチ
+  if git_branch ~= "" then
+    table.insert(left_status, { Background = { Color = colors.surface1 } })
+    table.insert(left_status, { Foreground = { Color = colors.surface0 } })
+    table.insert(left_status, { Text = "" })
+    table.insert(left_status, { Background = { Color = colors.surface1 } })
+    table.insert(left_status, { Foreground = { Color = colors.peach } })
+    table.insert(left_status, { Text = "  " .. git_branch .. " " })
+    table.insert(left_status, { Background = { Color = colors.base } })
+    table.insert(left_status, { Foreground = { Color = colors.surface1 } })
+    table.insert(left_status, { Text = "" })
+  else
+    table.insert(left_status, { Background = { Color = colors.base } })
+    table.insert(left_status, { Foreground = { Color = colors.surface0 } })
+    table.insert(left_status, { Text = "" })
+  end
 
-  window:set_left_status(cells[1])
-  window:set_right_status(cells[2])
+  -- 右側のステータス（日時 + バッテリー）
+  local right_status = {}
+  -- 日時
+  local date = wezterm.strftime("%H:%M")
+  local day = wezterm.strftime("%Y-%m-%d")
+  table.insert(right_status, { Background = { Color = colors.base } })
+  table.insert(right_status, { Foreground = { Color = colors.surface0 } })
+  table.insert(right_status, { Text = "" })
+  table.insert(right_status, { Background = { Color = colors.surface0 } })
+  table.insert(right_status, { Foreground = { Color = colors.lavender } })
+  table.insert(right_status, { Text = " 󰃰 " .. day .. " " })
+  table.insert(right_status, { Background = { Color = colors.surface1 } })
+  table.insert(right_status, { Foreground = { Color = colors.surface0 } })
+  table.insert(right_status, { Text = "" })
+  table.insert(right_status, { Background = { Color = colors.surface1 } })
+  table.insert(right_status, { Foreground = { Color = colors.green } })
+  table.insert(right_status, { Text = "  " .. date .. " " })
+
+  window:set_left_status(wezterm.format(left_status))
+  window:set_right_status(wezterm.format(right_status))
 end)
 
 return config
